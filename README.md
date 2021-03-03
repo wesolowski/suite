@@ -4,13 +4,6 @@
 
 License: [MIT](LICENSE)
 
-## Vagrant Installation
-In order to install the Shop Suite on your machine, you can follow the instructions described in the link below:
-
-For DevVM based installation instructions, see [About the Installation Guides](https://documentation.spryker.com/docs/about-installation).
-
-If you encounter any issues during or after the installation, see [Troubleshooting article](https://documentation.spryker.com/docs/troubleshooting).
-
 ## Docker installation
 
 * [Troubleshooting](https://academy.spryker.com/getting_started/troubleshooting.html)
@@ -35,52 +28,11 @@ Recommended system requirements for MacOS:
 ### Installation
 
 Run the commands:
-```bash
-mkdir suite && cd suite
-git clone https://github.com/spryker-shop/suite.git ./
-git clone git@github.com:spryker/docker-sdk.git docker
-```
-
-### Production-like environment
-
-1. Run the following commands right after cloning the repository:
 
 ```bash
-docker/sdk boot -s
-```
-
-> Please, follow the recommendations in output in order to prepare the environment.
-
-```bash
-docker/sdk up
-```
-
-2. Git checkout with assets and importing data:
-
-```bash
-git checkout your_branch
-docker/sdk boot -s
-docker/sdk up --assets --data
-```
-
-> Optional `up` command arguments:
->
-> - `--assets` - build assets
-> - `--data` - get new demo data
-
-3. Light git checkout:
-
-```bash
-git checkout your_branch
-docker/sdk boot -s
-
-docker/sdk up
-```
-
-4. Reload all the data:
-
-```bash
-docker/sdk clean-data && docker/sdk up && docker/sdk console q:w:s -v -s
+# clone suite
+cd suite
+git https://github.com/spryker/docker-sdk.git docker
 ```
 
 ### Developer environment
@@ -91,52 +43,10 @@ docker/sdk clean-data && docker/sdk up && docker/sdk console q:w:s -v -s
 docker/sdk boot deploy.dev.yml
 ```
 
-> Please, follow the recommendations in output in order to prepare the environment.
 
 ```bash
-docker/sdk up
+docker/sdk up -x
 ```
-
-2. Git checkout:
-
-```bash
-git checkout your_branch
-docker/sdk boot -s deploy.dev.yml
-docker/sdk up --build --assets --data
-```
-
-> Optional `up` command arguments:
->
-> - `--build` - update composer, generate transfer objects, etc.
-> - `--assets` - build assets
-> - `--data` - get new demo data
-
-3. If you get unexpected application behavior or unexpected errors:
-
-    1. Run the command:
-    ```bash
-    git status
-    ```
-
-    2. If there are unnecessary untracked files (red ones), remove them.
-
-    3. Restrart file sync and re-build the codebase:
-    ```bash
-    docker/sdk trouble
-    docker/sdk boot -s deploy.dev.yml
-    docker/sdk up --build --assets
-    ```
-
-4. If you do not see the expected demo data on the Storefront:
-
-    1. Check the queue broker and wait until all queues are empty.
-
-    2. If the queue is empty but the issue persists, reload the demo data:
-    ```bash
-    docker/sdk trouble
-    docker/sdk boot -s deploy.dev.yml
-    docker/sdk up --build --assets --data
-    ```
 
 ### Troubleshooting
 
@@ -156,16 +66,6 @@ docker/sdk logs
 3. Open the page with the error.
 4. Check the logs.
 
-**MacOS and Windows - files synchronization issues in Development mode**
-
-1. Follow sync logs:
-```bash
-docker/sdk sync logs
-```
-2. Hard reset:
-```bash
-docker/sdk trouble && rm -rf vendor && rm -rf src/Generated && docker/sdk sync && docker/sdk up
-```
 
 **Errors**
 
