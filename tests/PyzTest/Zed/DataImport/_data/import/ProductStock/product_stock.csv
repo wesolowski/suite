@@ -1,0 +1,3 @@
+concrete_sku,name,quantity,is_never_out_of_stock,is_bundle
+001_25904006,Warehouse1,10,0,0
+002_25904004,Warehouse1,10,0,0
