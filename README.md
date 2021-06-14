@@ -32,7 +32,7 @@ Run the commands:
 ```bash
 # clone suite
 cd suite
-git https://github.com/spryker/docker-sdk.git docker
+git clone https://github.com/spryker/docker-sdk.git docker
 ```
 
 ### Developer environment
